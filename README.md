@@ -4,12 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>IPTV Pro Manager</title>
+    
+    <!-- PWA Configurations -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6750a4">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="icon.png">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <style>
         :root {
-            --md-primary: #6750a4; /* لون الماتيريال الأساسي */
+            --md-primary: #6750a4; 
             --md-primary-container: #eaddff;
             --md-on-primary-container: #21005d;
             --md-secondary-container: #e8def8;
@@ -67,7 +76,7 @@
             box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
             transition: all 0.2s;
         }
-        .auth-btn:hover { background-color: var(--md-primary-dark); box-shadow: 0px 4px 8px rgba(0,0,0,0.15); }
+        .auth-btn:hover { background-color: #513b8c; box-shadow: 0px 4px 8px rgba(0,0,0,0.15); }
 
         /* --- Top Layout Navbar (Android Toolbar) --- */
         #app-container { display: none; }
@@ -327,7 +336,6 @@
         /* --- Media Breakpoints --- */
 
         @media (max-width: 768px) {
-            /* نظام Bottom Sheet للأجهزة المحمولة */
             .modal-overlay {
                 align-items: flex-end;
                 padding: 0;
@@ -587,7 +595,7 @@
             <i class="fas fa-plus"></i>
         </button>
 
-        <!-- BOTTOM NAV (Android Material 3 Navbar) -->
+        <!-- BOTTOM NAV -->
         <div class="bottom-nav">
             <button class="nav-item active" id="btn-dashboard" onclick="showSection('dashboard')">
                 <div class="icon-wrapper"><i class="fas fa-home"></i></div>
@@ -1214,6 +1222,15 @@
                 modal.style.display = 'none';
             }
         });
+
+        // PWA Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Service Worker registered:', reg.scope))
+                    .catch(err => console.error('Service Worker registration failed:', err));
+            });
+        }
     </script>
 </body>
 </html>
