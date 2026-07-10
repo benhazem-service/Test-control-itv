@@ -9,146 +9,349 @@
     
     <style>
         :root {
-            --primary: #4f46e5;
-            --primary-dark: #4338ca;
-            --bg: #f8fafc;
+            --primary: #6366f1;
+            --primary-gradient: linear-gradient(135deg, #6366f1, #a855f7);
+            --primary-dark: #4f46e5;
+            --bg: #f1f5f9;
             --surface: #ffffff;
-            --text: #1e293b;
-            --text-light: #64748b;
+            --text: #0f172a;
+            --text-light: #475569;
             --border: #e2e8f0;
-            --danger: #ef4444;
+            --danger: #f43f5e;
+            --danger-gradient: linear-gradient(135deg, #f43f5e, #e11d48);
             --success: #10b981;
+            --success-gradient: linear-gradient(135deg, #10b981, #059669);
             --warning: #f59e0b;
+            --warning-gradient: linear-gradient(135deg, #f59e0b, #d97706);
             --info: #3b82f6;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --radius: 10px;
+            --radius: 16px;
+            --3d-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.15), 0 8px 16px -6px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            --btn-3d-offset: 4px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background-color: var(--bg); color: var(--text); padding-bottom: 80px; min-height: 100vh; }
-
-        /* --- Auth --- */
-        #auth-container { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: linear-gradient(135deg, var(--primary), #818cf8); padding: 15px; }
-        .auth-card { background: var(--surface); padding: 1.5rem; border-radius: 1rem; width: 100%; max-width: 400px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); text-align: center; }
-        .password-wrapper { position: relative; margin-bottom: 1rem; }
-        .password-wrapper i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--text-light); cursor: pointer; }
-        .auth-input { width: 100%; padding: 12px 15px; margin-bottom: 10px; border: 1px solid var(--border); border-radius: var(--radius); outline: none; font-size: 16px; background: #fff; }
-        .password-wrapper input { padding-left: 40px; }
-        .auth-btn { width: 100%; padding: 14px; background: var(--primary); color: white; border: none; border-radius: var(--radius); font-weight: bold; font-size: 16px; cursor: pointer; margin-top: 10px; }
-
-        /* --- Layout --- */
-        #app-container { display: none; }
-        nav { background: var(--surface); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .logo { font-size: 1.2rem; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 8px; }
         
-        /* Desktop Navigation Styles */
+        body { 
+            background: radial-gradient(circle at 10% 20%, #f1f5f9 0%, #e2e8f0 100%);
+            color: var(--text); 
+            padding-bottom: 100px; 
+            min-height: 100vh; 
+        }
+
+        /* --- Auth Page --- */
+        #auth-container { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: linear-gradient(135deg, #4f46e5 0%, #8b5cf6 50%, #d946ef 100%); padding: 15px; }
+        .auth-card { background: rgba(255, 255, 255, 0.95); padding: 1.8rem; border-radius: 24px; width: 100%; max-width: 400px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.9); text-align: center; border: 1px solid rgba(255, 255, 255, 0.5); }
+        .password-wrapper { position: relative; margin-bottom: 1.2rem; }
+        .password-wrapper i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--text-light); cursor: pointer; }
+        .auth-input { width: 100%; padding: 14px 15px; margin-bottom: 10px; border: 1px solid var(--border); border-radius: var(--radius); outline: none; font-size: 16px; background: #fff; box-shadow: inset 0 2px 4px rgba(0,0,0,0.06); transition: border-color 0.2s; }
+        .auth-input:focus { border-color: var(--primary); }
+        .password-wrapper input { padding-left: 40px; }
+        
+        .auth-btn { 
+            width: 100%; 
+            padding: 14px; 
+            background: var(--primary-gradient); 
+            color: white; 
+            border: none; 
+            border-radius: var(--radius); 
+            font-weight: bold; 
+            font-size: 16px; 
+            cursor: pointer; 
+            margin-top: 10px; 
+            box-shadow: 0 var(--btn-3d-offset) 0 var(--primary-dark), 0 8px 16px rgba(99, 102, 241, 0.3);
+            transition: all 0.1s ease;
+        }
+        .auth-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--primary-dark), 0 12px 20px rgba(99, 102, 241, 0.35); }
+        .auth-btn:active { transform: translateY(var(--btn-3d-offset)); box-shadow: 0 0px 0 var(--primary-dark), 0 4px 8px rgba(99, 102, 241, 0.2); }
+
+        /* --- Top Layout Navbar --- */
+        #app-container { display: none; }
+        nav { 
+            background: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(12px);
+            padding: 15px 20px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05); 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+        }
+        .logo { font-size: 1.3rem; font-weight: 900; background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: flex; align-items: center; gap: 8px; filter: drop-shadow(0 2px 4px rgba(99, 102, 241, 0.15)); }
+        .logo i { -webkit-text-fill-color: initial; color: #6366f1; }
+        
+        /* Desktop navigation menu inside navbar */
         .desktop-menu { display: none; gap: 10px; }
-        .desktop-menu .nav-link { background: none; border: none; color: var(--text-light); font-size: 0.95rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: var(--radius); transition: all 0.2s ease; }
-        .desktop-menu .nav-link:hover { background: #f1f5f9; color: var(--primary); }
-        .desktop-menu .nav-link.active { color: var(--primary); background: #eeebff; }
+        .desktop-menu .nav-link { 
+            background: var(--surface); 
+            border: 1px solid var(--border); 
+            color: var(--text-light); 
+            font-size: 0.95rem; 
+            font-weight: 700; 
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            gap: 6px; 
+            padding: 8px 16px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), inset 0 -2px 0 rgba(0,0,0,0.05);
+            transition: all 0.2s ease; 
+        }
+        .desktop-menu .nav-link:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 6px 12px rgba(99, 102, 241, 0.15), inset 0 -2px 0 rgba(0,0,0,0.05); 
+            color: var(--primary); 
+        }
+        .desktop-menu .nav-link.active { 
+            background: var(--primary-gradient); 
+            color: white; 
+            border-color: transparent;
+            box-shadow: 0 6px 15px rgba(99, 102, 241, 0.3), inset 0 -3px 0 rgba(0,0,0,0.15); 
+        }
         .desktop-menu .nav-link.hidden { display: none; }
 
         .top-actions { display: flex; gap: 10px; align-items: center; }
-        .icon-btn { background: none; border: none; font-size: 1.3rem; color: var(--text-light); cursor: pointer; padding: 5px; border-radius: 50%; width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; transition: background 0.2s; }
-        .icon-btn:hover { background: #f1f5f9; }
+        
+        .icon-btn { 
+            background: var(--surface); 
+            border: 1px solid var(--border); 
+            font-size: 1.2rem; 
+            color: var(--text-light); 
+            cursor: pointer; 
+            width: 40px; 
+            height: 40px; 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), inset 0 -2px 0 rgba(0,0,0,0.05);
+            transition: all 0.1s ease; 
+        }
+        .icon-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.08), inset 0 -2px 0 rgba(0,0,0,0.05); color: var(--text); }
+        .icon-btn:active { transform: translateY(1px); box-shadow: 0 2px 4px rgba(0,0,0,0.05), inset 0 -1px 0 rgba(0,0,0,0.05); }
 
-        /* --- Bottom Nav --- */
-        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--surface); display: flex; justify-content: space-around; padding: 10px 0; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); z-index: 999; border-top: 1px solid var(--border); }
-        .nav-item { background: none; border: none; display: flex; flex-direction: column; align-items: center; color: var(--text-light); font-size: 0.8rem; cursor: pointer; width: 20%; gap: 3px; }
-        .nav-item i { font-size: 1.3rem; }
+        /* --- Floating 3D Bottom Nav --- */
+        .bottom-nav { 
+            position: fixed; 
+            bottom: 15px; 
+            left: 15px; 
+            right: 15px; 
+            width: calc(100% - 30px); 
+            background: rgba(255, 255, 255, 0.9); 
+            backdrop-filter: blur(10px);
+            display: flex; 
+            justify-content: space-around; 
+            padding: 12px 0; 
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(99, 102, 241, 0.1), inset 0 1px 0 rgba(255,255,255,0.6);
+            z-index: 999; 
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .nav-item { background: none; border: none; display: flex; flex-direction: column; align-items: center; color: var(--text-light); font-size: 0.8rem; cursor: pointer; width: 20%; gap: 4px; transition: all 0.1s; font-weight: 700; }
+        .nav-item i { font-size: 1.4rem; transition: transform 0.2s; }
         .nav-item.active { color: var(--primary); }
+        .nav-item.active i { transform: translateY(-2px) scale(1.1); filter: drop-shadow(0 4px 6px rgba(99, 102, 241, 0.2)); }
         .nav-item.hidden { display: none; }
 
         /* --- Container --- */
         .container { padding: 12px; max-width: 1400px; margin: 0 auto; }
-        .section { display: none; animation: fadeIn 0.3s ease-out; }
+        .section { display: none; animation: fadeIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); }
         .section.active { display: block; }
 
-        /* --- Dashboard --- */
-        .chart-container { height: 260px; margin-bottom: 15px; background: var(--surface); padding: 15px; border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--border); }
+        /* --- Dashboard Components --- */
+        .chart-container { height: 260px; margin-bottom: 20px; background: var(--surface); padding: 15px; border-radius: var(--radius); box-shadow: var(--3d-shadow); border: 1px solid var(--border); }
         .chart-container.hidden { display: none; }
-        .controls-area { display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px; }
-        .form-control { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius); outline: none; background: #fff; font-size: 15px; transition: border-color 0.2s; }
-        .form-control:focus { border-color: var(--primary); }
+        
+        .controls-area { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+        
+        .form-control { 
+            width: 100%; 
+            padding: 12px 16px; 
+            border: 1px solid var(--border); 
+            border-radius: var(--radius); 
+            outline: none; 
+            background: #fff; 
+            font-size: 15px; 
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
+            transition: all 0.2s; 
+        }
+        .form-control:focus { border-color: var(--primary); box-shadow: inset 0 2px 4px rgba(0,0,0,0.06), 0 0 0 3px rgba(99, 102, 241, 0.15); }
 
         /* --- TABLE STYLE --- */
-        .table-card { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--border); overflow: hidden; }
+        .table-card { background: var(--surface); border-radius: var(--radius); box-shadow: var(--3d-shadow); border: 1px solid var(--border); overflow: hidden; }
         .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
         table { width: 100%; border-collapse: collapse; white-space: nowrap; }
-        th { background: #f1f5f9; color: var(--text-light); font-weight: 600; padding: 10px 12px; text-align: right; font-size: 0.8rem; }
-        td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--text); font-size: 0.85rem; vertical-align: middle; }
+        th { background: #f8fafc; color: var(--text-light); font-weight: 700; padding: 14px 16px; text-align: right; font-size: 0.85rem; border-bottom: 2px solid var(--border); }
+        td { padding: 14px 16px; border-bottom: 1px solid var(--border); color: var(--text); font-size: 0.9rem; vertical-align: middle; }
         tr:last-child td { border-bottom: none; }
-        tr:hover { background-color: #f8fafc; }
+        tr:hover { background-color: #f1f5f9; }
 
-        .status-badge { padding: 4px 8px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; display: inline-block; min-width: 55px; text-align: center; cursor: pointer; user-select: none; }
-        .status-active { background: #dcfce7; color: #166534; }
-        .status-warning { background: #fef9c3; color: #854d0e; }
-        .status-expired { background: #fee2e2; color: #991b1b; }
-        .status-none { background: #f1f5f9; color: #64748b; }
+        /* Glowing Pill Status Badges */
+        .status-badge { 
+            padding: 6px 12px; 
+            border-radius: 50px; 
+            font-size: 0.75rem; 
+            font-weight: 800; 
+            display: inline-block; 
+            min-width: 70px; 
+            text-align: center; 
+            cursor: pointer; 
+            user-select: none; 
+            transition: transform 0.1s;
+        }
+        .status-badge:active { transform: scale(0.95); }
+        .status-active { background: var(--success-gradient); color: white; box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3), inset 0 -2px 0 rgba(0,0,0,0.15); }
+        .status-warning { background: var(--warning-gradient); color: white; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3), inset 0 -2px 0 rgba(0,0,0,0.15); }
+        .status-expired { background: var(--danger-gradient); color: white; box-shadow: 0 4px 10px rgba(244, 63, 94, 0.3), inset 0 -2px 0 rgba(0,0,0,0.15); }
+        .status-none { background: #cbd5e1; color: #1e293b; box-shadow: inset 0 -2px 0 rgba(0,0,0,0.1); }
 
-        /* Buttons */
-        .btn { padding: 10px 14px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; transition: opacity 0.2s; }
-        .btn:active { opacity: 0.8; }
-        .btn-primary { background: var(--primary); color: white; }
-        .btn-success { background: var(--success); color: white; }
-        .btn-danger { background: var(--danger); color: white; }
-        .btn-warning { background: var(--warning); color: white; }
-        .btn-sm { padding: 5px 8px; font-size: 12px; border-radius: 6px; }
-
-        /* Forms Grid & Multi-Column Layouts */
-        .form-grid-layout { display: grid; grid-template-columns: 1fr; gap: 15px; }
+        /* Tactical 3D Buttons */
+        .btn { 
+            padding: 11px 16px; 
+            border: none; 
+            border-radius: 12px; 
+            cursor: pointer; 
+            font-weight: 700; 
+            font-size: 14px; 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 6px; 
+            transition: all 0.1s ease; 
+        }
         
-        .card { background: var(--surface); padding: 15px; border-radius: var(--radius); margin-bottom: 15px; border: 1px solid var(--border); box-shadow: var(--shadow); }
-        .card h4 { margin-bottom: 12px; color: var(--primary); border-bottom: 1px solid #f1f5f9; padding-bottom: 8px; font-size: 1rem; }
-        .form-group { margin-bottom: 12px; }
-        .form-group label { display: block; margin-bottom: 5px; color: var(--text-light); font-size: 0.85rem; }
+        .btn-primary { 
+            background: var(--primary-gradient); 
+            color: white; 
+            box-shadow: 0 var(--btn-3d-offset) 0 var(--primary-dark), 0 8px 16px rgba(99, 102, 241, 0.25);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--primary-dark), 0 10px 18px rgba(99, 102, 241, 0.3); }
+        .btn-primary:active { transform: translateY(var(--btn-3d-offset)); box-shadow: 0 0px 0 var(--primary-dark), 0 4px 8px rgba(99, 102, 241, 0.2); }
+
+        .btn-success { 
+            background: var(--success-gradient); 
+            color: white; 
+            box-shadow: 0 var(--btn-3d-offset) 0 #059669, 0 8px 16px rgba(16, 185, 129, 0.25);
+        }
+        .btn-success:hover { transform: translateY(-2px); box-shadow: 0 6px 0 #059669, 0 10px 18px rgba(16, 185, 129, 0.3); }
+        .btn-success:active { transform: translateY(var(--btn-3d-offset)); box-shadow: 0 0px 0 #059669, 0 4px 8px rgba(16, 185, 129, 0.2); }
+
+        .btn-danger { 
+            background: var(--danger-gradient); 
+            color: white; 
+            box-shadow: 0 var(--btn-3d-offset) 0 #be123c, 0 8px 16px rgba(244, 63, 94, 0.25);
+        }
+        .btn-danger:hover { transform: translateY(-2px); box-shadow: 0 6px 0 #be123c, 0 10px 18px rgba(244, 63, 94, 0.3); }
+        .btn-danger:active { transform: translateY(var(--btn-3d-offset)); box-shadow: 0 0px 0 #be123c, 0 4px 8px rgba(244, 63, 94, 0.2); }
+
+        .btn-warning { 
+            background: var(--warning-gradient); 
+            color: white; 
+            box-shadow: 0 var(--btn-3d-offset) 0 #b45309, 0 8px 16px rgba(245, 158, 11, 0.25);
+        }
+        .btn-warning:hover { transform: translateY(-2px); box-shadow: 0 6px 0 #b45309, 0 10px 18px rgba(245, 158, 11, 0.3); }
+        .btn-warning:active { transform: translateY(var(--btn-3d-offset)); box-shadow: 0 0px 0 #b45309, 0 4px 8px rgba(245, 158, 11, 0.2); }
+
+        .btn-sm { padding: 6px 10px; font-size: 12px; border-radius: 8px; --btn-3d-offset: 2px; }
+
+        /* Cards Layout */
+        .form-grid-layout { display: grid; grid-template-columns: 1fr; gap: 18px; }
         
-        .stats-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 15px; }
-        .stat-card { text-align: center; padding: 15px; border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); border: 1px solid var(--border); }
-        .stat-value { font-size: 1.3rem; font-weight: 800; display: block; margin-top: 5px; }
-        .stat-title { font-size: 0.8rem; color: var(--text-light); }
+        .card { 
+            background: var(--surface); 
+            padding: 18px; 
+            border-radius: var(--radius); 
+            margin-bottom: 20px; 
+            border: 1px solid var(--border); 
+            box-shadow: var(--3d-shadow); 
+        }
+        .card h4 { margin-bottom: 15px; color: var(--primary); border-bottom: 2px solid var(--bg); padding-bottom: 8px; font-size: 1.1rem; font-weight: 800; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 6px; color: var(--text-light); font-size: 0.9rem; font-weight: 700; }
+        
+        /* Stats Dashboard Panels */
+        .stats-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 20px; }
+        
+        .stat-card { 
+            text-align: center; 
+            padding: 20px 15px; 
+            border-radius: var(--radius); 
+            background: var(--surface); 
+            box-shadow: var(--3d-shadow); 
+            border: 1px solid var(--border); 
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary-gradient);
+        }
+        .stat-card:hover { transform: translateY(-4px); }
+        .stat-value { font-size: 1.5rem; font-weight: 900; display: block; margin-top: 5px; }
+        .stat-title { font-size: 0.85rem; color: var(--text-light); font-weight: 700; }
 
-        /* Modals */
-        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center; z-index: 2000; backdrop-filter: blur(3px); padding: 15px; }
-        .modal { background: var(--surface); width: 100%; max-width: 500px; max-height: 85vh; overflow-y: auto; border-radius: 16px; padding: 20px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.15); }
-        .detail-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f1f5f9; font-size: 0.9rem; }
-        .date-popover { background: #1e293b; color: #ffffff; padding: 12px 16px; border-radius: 12px; position: fixed; z-index: 3000; font-size: 0.85rem; display: none; pointer-events: none; text-align: center; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); }
-
-        /* --- Media Queries --- */
-
-        /* شاشات الهواتف المتوسطة فما فوق */
-        @media (min-width: 480px) {
-            .auth-card { padding: 2rem; }
-            .logo { font-size: 1.3rem; }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-            th { font-size: 0.85rem; padding: 12px 15px; }
-            td { font-size: 0.9rem; padding: 12px 15px; }
-            .container { padding: 15px; }
-            .card { padding: 20px; }
+        /* Modals & Popovers (Glassmorphic dark design) */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.4); display: none; justify-content: center; align-items: center; z-index: 2000; backdrop-filter: blur(8px); padding: 15px; }
+        .modal { background: var(--surface); width: 100%; max-width: 500px; max-height: 85vh; overflow-y: auto; border-radius: 24px; padding: 25px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.8); }
+        .detail-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 0.95rem; }
+        
+        .date-popover { 
+            background: rgba(15, 23, 42, 0.95); 
+            backdrop-filter: blur(8px);
+            color: #ffffff; 
+            padding: 16px 24px; 
+            border-radius: 16px; 
+            position: fixed; 
+            z-index: 3000; 
+            font-size: 0.85rem; 
+            display: none; 
+            pointer-events: none; 
+            text-align: center; 
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(99, 102, 241, 0.2); 
+            border: 1px solid rgba(255, 255, 255, 0.15); 
         }
 
-        /* شاشات التابلت والأجهزة المتوسطة */
+        /* --- Media Breakpoints --- */
+
+        /* Mobile Medium + */
+        @media (min-width: 480px) {
+            .auth-card { padding: 2.5rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            th { font-size: 0.9rem; padding: 14px 16px; }
+            td { font-size: 0.95rem; padding: 14px 16px; }
+            .container { padding: 15px; }
+            .card { padding: 24px; }
+        }
+
+        /* Tablet + Screen types */
         @media (min-width: 769px) {
-            body { padding-bottom: 20px; }
+            body { padding-bottom: 25px; }
             .bottom-nav { display: none; }
             .desktop-menu { display: flex; }
             .controls-area { flex-direction: row; justify-content: space-between; align-items: center; }
-            .controls-area .form-control { max-width: 300px; }
-            .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 15px; }
+            .controls-area .form-control { max-width: 320px; }
+            .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
             
-            /* تحويل نماذج الإدخال إلى نظام متعدد الأعمدة لتقليص المساحة العمودية */
-            .form-grid-layout { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+            .form-grid-layout { grid-template-columns: repeat(2, 1fr); gap: 24px; }
             .form-card-full { grid-column: span 2; }
         }
 
-        /* الشاشات الكبيرة والمكتبية العريضة */
+        /* Large desktop monitor sizes */
         @media (min-width: 1200px) {
-            .container { padding: 20px; }
-            .form-grid-layout { gap: 25px; }
-            th, td { padding: 14px 18px; }
+            .container { padding: 25px; }
+            .form-grid-layout { gap: 30px; }
+            th, td { padding: 16px 20px; }
         }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(12px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
     </style>
 </head>
 <body>
@@ -156,8 +359,8 @@
     <!-- AUTHENTICATION -->
     <div id="auth-container">
         <div class="auth-card">
-            <h2 style="color: var(--primary); margin-bottom: 0.5rem;">IPTV Pro</h2>
-            <p style="color: var(--text-light); margin-bottom: 2rem;">لوحة تحكم ذكية</p>
+            <h2 style="color: var(--primary); margin-bottom: 0.5rem; font-weight: 900;">IPTV Pro</h2>
+            <p style="color: var(--text-light); margin-bottom: 2rem; font-weight: 700;">لوحة تحكم ذكية</p>
             <form id="auth-form">
                 <input type="email" id="auth-email" class="auth-input" placeholder="البريد الإلكتروني" required>
                 <div class="password-wrapper">
@@ -170,14 +373,14 @@
                 </div>
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px; justify-content: flex-start;">
                     <input type="checkbox" id="remember-me" style="width: 18px; height: 18px;">
-                    <label for="remember-me" style="font-size: 0.95rem;">تذكرني</label>
+                    <label for="remember-me" style="font-size: 0.95rem; font-weight: 700;">تذكرني</label>
                 </div>
                 <div style="text-align: left; margin-bottom: 20px;">
-                    <span id="forgot-password-link" style="color: var(--primary); font-size: 0.9rem; text-decoration: underline; cursor: pointer;" onclick="resetPassword()">نسيت كلمة المرور؟</span>
+                    <span id="forgot-password-link" style="color: var(--primary); font-size: 0.9rem; text-decoration: underline; cursor: pointer; font-weight: 700;" onclick="resetPassword()">نسيت كلمة المرور؟</span>
                 </div>
                 <button type="submit" class="auth-btn" id="auth-submit-btn">تسجيل الدخول</button>
             </form>
-            <p style="margin-top:20px; color:var(--text-light); cursor:pointer;" onclick="toggleAuthMode()" id="auth-switch-text">إنشاء حساب جديد</p>
+            <p style="margin-top:20px; color:var(--text-light); cursor:pointer; font-weight:700;" onclick="toggleAuthMode()" id="auth-switch-text">إنشاء حساب جديد</p>
             <p id="auth-error" style="color:var(--danger); background:#fee2e2; padding:10px; border-radius:8px; margin-top:10px; display:none;"></p>
         </div>
     </div>
@@ -189,7 +392,7 @@
         <nav>
             <div class="logo"><i class="fas fa-layer-group"></i> IPTV Pro</div>
             
-            <!-- Desktop/Tablet Menu Navigation (ظاهر فقط في الشاشات العريضة) -->
+            <!-- Desktop/Tablet Navigation Menu -->
             <div class="desktop-menu">
                 <button class="nav-link active" id="btn-desktop-dashboard" onclick="showSection('dashboard')"><i class="fas fa-home"></i> الرئيسية</button>
                 <button class="nav-link" id="btn-desktop-add" onclick="showSection('add'); resetForm();"><i class="fas fa-plus-circle"></i> إضافة</button>
@@ -247,7 +450,7 @@
 
             <!-- 2. ADD SUBSCRIBER -->
             <div id="add" class="section">
-                <h3 id="formTitle" style="margin-bottom: 20px; color: var(--primary);">إضافة مشترك</h3>
+                <h3 id="formTitle" style="margin-bottom: 20px; color: var(--primary); font-weight: 800;">إضافة مشترك</h3>
                 <form id="subscriberForm">
                     <input type="hidden" id="editId">
                     
@@ -295,7 +498,7 @@
                         </div>
                     </div>
 
-                    <div style="display: flex; gap: 10px; margin-top: 15px;">
+                    <div style="display: flex; gap: 15px; margin-top: 20px;">
                         <button type="submit" class="btn btn-primary" style="flex:1">حفظ</button>
                         <button type="button" class="btn btn-warning" style="flex:1" onclick="showSection('dashboard')">إلغاء</button>
                     </div>
@@ -305,9 +508,18 @@
             <!-- 3. FINANCE -->
             <div id="finance" class="section">
                 <div class="stats-grid">
-                    <div class="stat-card"><span class="stat-title">المبيعات</span><span class="stat-value" id="totalSales" style="color:var(--primary)">0</span></div>
-                    <div class="stat-card"><span class="stat-title">التعبئة</span><span class="stat-value" id="totalRecharge" style="color:var(--warning)">0</span></div>
-                    <div class="stat-card"><span class="stat-title">الصافي</span><span class="stat-value" id="netProfit" style="color:var(--success)">0</span></div>
+                    <div class="stat-card">
+                        <span class="stat-title">المبيعات</span>
+                        <span class="stat-value" id="totalSales" style="color:var(--primary)">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-title">التعبئة</span>
+                        <span class="stat-value" id="totalRecharge" style="color:var(--warning)">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-title">الصافي</span>
+                        <span class="stat-value" id="netProfit" style="color:var(--success)">0</span>
+                    </div>
                 </div>
                 <div class="card">
                     <h4>إضافة تعبئة</h4>
@@ -323,7 +535,7 @@
 
             <!-- 4. TRASH -->
             <div id="trash" class="section">
-                <h3 style="color:var(--danger); margin-bottom:15px;">سلة المهملات</h3>
+                <h3 style="color:var(--danger); margin-bottom:15px; font-weight: 800;">سلة المهملات</h3>
                 <div class="table-card" style="border-color: var(--danger);">
                     <div class="table-wrapper">
                         <table>
@@ -349,7 +561,7 @@
             </div>
         </div>
 
-        <!-- BOTTOM NAV (ظاهر فقط في شاشات الهاتف والتابلت الصغير) -->
+        <!-- BOTTOM NAV (Floating 3D dock) -->
         <div class="bottom-nav">
             <button class="nav-item active" id="btn-dashboard" onclick="showSection('dashboard')"><i class="fas fa-home"></i> <span>الرئيسية</span></button>
             <button class="nav-item" id="btn-add" onclick="showSection('add'); resetForm();"><i class="fas fa-plus-circle"></i> <span>إضافة</span></button>
@@ -550,12 +762,10 @@
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
             
-            // مزامنة أزرار الملاحة السفلية للهواتف
             document.querySelectorAll('.bottom-nav .nav-item').forEach(b => b.classList.remove('active'));
             const botBtn = document.getElementById('btn-'+id);
             if(botBtn) botBtn.classList.add('active');
 
-            // مزامنة أزرار الملاحة العلوية للحواسب
             document.querySelectorAll('.desktop-menu .nav-link').forEach(b => b.classList.remove('active'));
             const deskBtn = document.getElementById('btn-desktop-'+id);
             if(deskBtn) deskBtn.classList.add('active');
@@ -643,8 +853,10 @@
             pop.style.display = 'block';
             pop.style.left = '50%';
             pop.style.top = '50%';
-            pop.style.transform = 'translate(-50%, -50%)';
-            setTimeout(() => pop.style.display = 'none', 3000);
+            pop.style.transform = 'translate(-50%, -50%) scale(1)';
+            setTimeout(() => {
+                pop.style.display = 'none';
+            }, 3000);
         };
 
         function renderRechargeTable() {
@@ -928,7 +1140,7 @@
                     datasets:[{
                         label:'الاشتراكات', 
                         data:labels.map(l=>months[l]), 
-                        backgroundColor:'#4f46e5', 
+                        backgroundColor:'#6366f1', 
                         borderRadius: 5
                     }]
                 }, 
