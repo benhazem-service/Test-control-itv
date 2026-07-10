@@ -31,6 +31,11 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; -webkit-tap-highlight-color: transparent; }
         
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
         body { 
             background: radial-gradient(circle at 10% 20%, #f1f5f9 0%, #e2e8f0 100%);
             color: var(--text); 
@@ -40,7 +45,7 @@
 
         /* --- Auth Page --- */
         #auth-container { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: linear-gradient(135deg, #4f46e5 0%, #8b5cf6 50%, #d946ef 100%); padding: 15px; }
-        .auth-card { background: rgba(255, 255, 255, 0.95); padding: 1.8rem; border-radius: 24px; width: 100%; max-width: 400px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.9); text-align: center; border: 1px solid rgba(255, 255, 255, 0.5); }
+        .auth-card { background: rgba(255, 255, 255, 0.95); padding: 1.5rem; border-radius: 24px; width: 100%; max-width: 400px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.9); text-align: center; border: 1px solid rgba(255, 255, 255, 0.5); }
         .password-wrapper { position: relative; margin-bottom: 1.2rem; }
         .password-wrapper i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--text-light); cursor: pointer; }
         .auth-input { width: 100%; padding: 14px 15px; margin-bottom: 10px; border: 1px solid var(--border); border-radius: var(--radius); outline: none; font-size: 16px; background: #fff; box-shadow: inset 0 2px 4px rgba(0,0,0,0.06); transition: border-color 0.2s; }
@@ -82,7 +87,7 @@
         .logo { font-size: 1.3rem; font-weight: 900; background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: flex; align-items: center; gap: 8px; filter: drop-shadow(0 2px 4px rgba(99, 102, 241, 0.15)); }
         .logo i { -webkit-text-fill-color: initial; color: #6366f1; }
         
-        /* Desktop navigation menu inside navbar */
+        /* Desktop navigation menu */
         .desktop-menu { display: none; gap: 10px; }
         .desktop-menu .nav-link { 
             background: var(--surface); 
@@ -156,7 +161,7 @@
         .nav-item.hidden { display: none; }
 
         /* --- Container --- */
-        .container { padding: 12px; max-width: 1400px; margin: 0 auto; }
+        .container { padding: 8px; max-width: 1400px; margin: 0 auto; width: 100%; }
         .section { display: none; animation: fadeIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); }
         .section.active { display: block; }
 
@@ -168,19 +173,21 @@
         
         .form-control { 
             width: 100%; 
-            padding: 12px 16px; 
+            max-width: 100%;
+            padding: 10px 12px; 
             border: 1px solid var(--border); 
             border-radius: var(--radius); 
             outline: none; 
             background: #fff; 
-            font-size: 15px; 
+            font-size: 14px; 
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
             transition: all 0.2s; 
+            box-sizing: border-box;
         }
         .form-control:focus { border-color: var(--primary); box-shadow: inset 0 2px 4px rgba(0,0,0,0.06), 0 0 0 3px rgba(99, 102, 241, 0.15); }
 
         /* --- TABLE STYLE --- */
-        .table-card { background: var(--surface); border-radius: var(--radius); box-shadow: var(--3d-shadow); border: 1px solid var(--border); overflow: hidden; }
+        .table-card { background: var(--surface); border-radius: var(--radius); box-shadow: var(--3d-shadow); border: 1px solid var(--border); overflow: hidden; max-width: 100%; }
         .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
         table { width: 100%; border-collapse: collapse; white-space: nowrap; }
         th { background: #f8fafc; color: var(--text-light); font-weight: 700; padding: 14px 16px; text-align: right; font-size: 0.85rem; border-bottom: 2px solid var(--border); }
@@ -188,7 +195,7 @@
         tr:last-child td { border-bottom: none; }
         tr:hover { background-color: #f1f5f9; }
 
-        /* Glowing Pill Status Badges */
+        /* Status Badges */
         .status-badge { 
             padding: 6px 12px; 
             border-radius: 50px; 
@@ -257,26 +264,27 @@
         .btn-sm { padding: 6px 10px; font-size: 12px; border-radius: 8px; --btn-3d-offset: 2px; }
 
         /* Cards Layout */
-        .form-grid-layout { display: grid; grid-template-columns: 1fr; gap: 18px; }
+        .form-grid-layout { display: grid; grid-template-columns: 1fr; gap: 15px; }
         
         .card { 
             background: var(--surface); 
-            padding: 18px; 
+            padding: 14px; 
             border-radius: var(--radius); 
-            margin-bottom: 20px; 
+            margin-bottom: 15px; 
             border: 1px solid var(--border); 
             box-shadow: var(--3d-shadow); 
+            width: 100%;
         }
-        .card h4 { margin-bottom: 15px; color: var(--primary); border-bottom: 2px solid var(--bg); padding-bottom: 8px; font-size: 1.1rem; font-weight: 800; }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; margin-bottom: 6px; color: var(--text-light); font-size: 0.9rem; font-weight: 700; }
+        .card h4 { margin-bottom: 12px; color: var(--primary); border-bottom: 2px solid var(--bg); padding-bottom: 6px; font-size: 1rem; font-weight: 800; }
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; margin-bottom: 5px; color: var(--text-light); font-size: 0.85rem; font-weight: 700; }
         
         /* Stats Dashboard Panels */
-        .stats-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 20px; }
+        .stats-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 15px; }
         
         .stat-card { 
             text-align: center; 
-            padding: 20px 15px; 
+            padding: 18px 12px; 
             border-radius: var(--radius); 
             background: var(--surface); 
             box-shadow: var(--3d-shadow); 
@@ -294,13 +302,13 @@
             height: 5px;
             background: var(--primary-gradient);
         }
-        .stat-card:hover { transform: translateY(-4px); }
-        .stat-value { font-size: 1.5rem; font-weight: 900; display: block; margin-top: 5px; }
-        .stat-title { font-size: 0.85rem; color: var(--text-light); font-weight: 700; }
+        .stat-card:hover { transform: translateY(-3px); }
+        .stat-value { font-size: 1.4rem; font-weight: 900; display: block; margin-top: 4px; }
+        .stat-title { font-size: 0.8rem; color: var(--text-light); font-weight: 700; }
 
-        /* Modals & Popovers (Glassmorphic dark design) */
+        /* Modals & Popovers */
         .modal-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.4); display: none; justify-content: center; align-items: center; z-index: 2000; backdrop-filter: blur(8px); padding: 15px; }
-        .modal { background: var(--surface); width: 100%; max-width: 500px; max-height: 85vh; overflow-y: auto; border-radius: 24px; padding: 25px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.8); }
+        .modal { background: var(--surface); width: 100%; max-width: 500px; max-height: 85vh; overflow-y: auto; border-radius: 24px; padding: 20px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.8); }
         .detail-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 0.95rem; }
         
         .date-popover { 
@@ -329,6 +337,7 @@
             td { font-size: 0.95rem; padding: 14px 16px; }
             .container { padding: 15px; }
             .card { padding: 24px; }
+            .form-control { padding: 12px 16px; font-size: 15px; }
         }
 
         /* Tablet + Screen types */
@@ -498,7 +507,7 @@
                         </div>
                     </div>
 
-                    <div style="display: flex; gap: 15px; margin-top: 20px;">
+                    <div style="display: flex; gap: 10px; margin-top: 15px;">
                         <button type="submit" class="btn btn-primary" style="flex:1">حفظ</button>
                         <button type="button" class="btn btn-warning" style="flex:1" onclick="showSection('dashboard')">إلغاء</button>
                     </div>
